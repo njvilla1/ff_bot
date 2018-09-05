@@ -216,7 +216,7 @@ def bot_main(function):
         year=2018
 
     bot = GroupMeBot(bot_id)
-    slack_bot = SlackBot(webhook_url)
+    #slack_bot = SlackBot(webhook_url)
     league = League(league_id, year)
 
     test = False
@@ -230,32 +230,32 @@ def bot_main(function):
         function="get_final"
         #bot.send_message(get_trophies(league))
         bot.send_message("test complete")
-        slack_bot.send_message("test complete")
+        #slack_bot.send_message("test complete")
 
     if function=="get_matchups":
         text = get_matchups(league)
         bot.send_message(text)
-        slack_bot.send_message(text)
+        #slack_bot.send_message(text)
     elif function=="get_scoreboard":
         text = get_scoreboard(league)
         bot.send_message(text)
-        slack_bot.send_message(text)
+        #slack_bot.send_message(text)
     elif function=="get_scoreboard_short":
         text = get_scoreboard_short(league)
         bot.send_message(text)
-        slack_bot.send_message(text)
+        #slack_bot.send_message(text)
     elif function=="get_close_scores":
         text = get_close_scores(league)
         bot.send_message(text)
-        slack_bot.send_message(text)
+        #slack_bot.send_message(text)
     elif function=="get_power_rankings":
         text = get_power_rankings(league)
         bot.send_message(text)
-        slack_bot.send_message(text)
+        #slack_bot.send_message(text)
     elif function=="get_trophies":
         text = get_trophies(league)
         bot.send_message(text)
-        slack_bot.send_message(text)
+        #slack_bot.send_message(text)
     elif function=="get_final":
         text = "Final " + get_scoreboard_short(league, True)
         text = text + "\n\n" + get_trophies(league)
@@ -263,19 +263,19 @@ def bot_main(function):
             print(text)
         else:
             bot.send_message(text)
-            slack_bot.send_message(text)
+            #slack_bot.send_message(text)
     elif function=="init":
         try:
             text = os.environ["INIT_MSG"]
             bot.send_message(text)
-            slack_bot.send_message(text)
+            #slack_bot.send_message(text)
         except KeyError:
             #do nothing here, empty init message
             pass
     else:
         text = "Something happened. HALP"
         bot.send_message(text)
-        slack_bot.send_message(text)
+        #slack_bot.send_message(text)
 
 
 if __name__ == '__main__':
