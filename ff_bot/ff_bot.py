@@ -309,7 +309,7 @@ if __name__ == '__main__':
         timezone=myTimezone, replace_existing=True)
     
     sched.add_job(bot_main, 'cron', ['get_matchups'], id='matchups',
-        day_of_week='wed', hour=14, minute=16, start_date=ff_start_date, end_date=ff_end_date,
+        day_of_week='thu', hour=19, minute=30, start_date=ff_start_date, end_date=ff_end_date,
         timezone=myTimezone, replace_existing=True)
     
     sched.add_job(bot_main, 'cron', ['get_close_scores'], id='close_scores',
