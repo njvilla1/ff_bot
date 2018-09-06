@@ -102,8 +102,8 @@ def get_scoreboard_short(league, final=False):
 def get_scoreboard(league):
     #Gets current week's scoreboard
     matchups = league.scoreboard()
-    score = ['%s %.2f - %.2f %s' % (i.home_team.team_name, i.home_score,
-             i.away_score, i.away_team.team_name) for i in matchups
+    score = ['%s %.2f - %.2f %s' % (i.home_team.team_abbrev, i.home_score,
+             i.away_score, i.away_team.team_abbrev) for i in matchups
              if i.away_team]
     text = ['Score Update'] + score
     return '\n'.join(text)
@@ -309,7 +309,7 @@ if __name__ == '__main__':
         timezone=myTimezone, replace_existing=True)
     
     sched.add_job(bot_main, 'cron', ['get_matchups'], id='matchups',
-        day_of_week='thu', hour=19, minute=30, start_date=ff_start_date, end_date=ff_end_date,
+        day_of_week='thu', hour=08, minute=20, start_date=ff_start_date, end_date=ff_end_date,
         timezone=myTimezone, replace_existing=True)
     
     sched.add_job(bot_main, 'cron', ['get_close_scores'], id='close_scores',
