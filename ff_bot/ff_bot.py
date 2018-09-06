@@ -112,8 +112,8 @@ def get_matchups(league):
     #Gets current week's Matchups
     matchups = league.scoreboard()
 
-    score = ['%s(%s-%s) vs %s(%s-%s)' % (i.home_team.team_name, i.home_team.wins, i.home_team.losses,
-             i.away_team.team_name, i.away_team.wins, i.away_team.losses) for i in matchups
+    score = ['%s(%s-%s) vs %s(%s-%s)' % (i.home_team.team_abbrev, i.home_team.wins, i.home_team.losses,
+             i.away_team.team_abbrev, i.away_team.wins, i.away_team.losses) for i in matchups
              if i.away_team]
     text = ['This Week\'s Matchups'] + score + ['\n'] + random_phrase()
     return '\n'.join(text)
@@ -309,7 +309,7 @@ if __name__ == '__main__':
         timezone=myTimezone, replace_existing=True)
     
     sched.add_job(bot_main, 'cron', ['get_matchups'], id='matchups',
-        day_of_week='thu', hour=08, minute=20, start_date=ff_start_date, end_date=ff_end_date,
+        day_of_week='thu', hour=8, minute=20, start_date=ff_start_date, end_date=ff_end_date,
         timezone=myTimezone, replace_existing=True)
     
     sched.add_job(bot_main, 'cron', ['get_close_scores'], id='close_scores',
