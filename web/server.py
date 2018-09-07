@@ -80,12 +80,12 @@ def hello_world():
     } 
     """
     content = request.json
-    #print("New message: {}".format(content))
+    print("New message: {}".format(content))
     
     # If sender is not a user, exit. Prevents infinite loops
-    if sender_type != 'user':
+    if content['sender_type'] != 'user':
         return
-        
+
     response = router.handle(content)
     if response:
         print('Wrote message in group: "{}"'.format(response))
