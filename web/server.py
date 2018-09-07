@@ -1,8 +1,14 @@
+import sys
+sys.path.append("..") # Allows imports from ../ff_bot/ff_bot.py module
+
 import os
 import requests
 import json
 import re
 from flask import Flask, request, jsonify
+
+from espnff import League
+from ff_bot.ff_bot import get_matchups
 
 try:
     BOT_ID = os.environ["BOT_ID"]
@@ -44,8 +50,14 @@ app = Flask("test bot")
 def echo_handler(msg):
     return msg['text']
 
+def matchups_handler(msg):
+    league = League(LEAGUE_ID, YEAR)
+    return get_matchups(league)
+    
+
 router = Router([
-    (r'^@bot repeat.*$', echo_handler)
+    (r'^@bot repeat$', echo_handler),
+    (r'^@bot matchups$', matchups_handler),
 ])
 
 @app.route('/receive_msg', methods=['POST'])
@@ -74,3 +86,6 @@ def hello_world():
         print('Wrote message in group: "{}"'.format(response))
 
     return 'Hello, World!'
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=5000, debug=True)
