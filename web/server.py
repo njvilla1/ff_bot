@@ -80,11 +80,11 @@ def hello_world():
     } 
     """
     content = request.json
-    print("New message: {}".format(content))
+    #print("New message: {}".format(content))
     
     # If sender is not a user, exit. Prevents infinite loops
     if content['sender_type'] != 'user':
-        return
+        return ''
 
     response = router.handle(content)
     if response:
